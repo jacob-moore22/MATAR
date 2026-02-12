@@ -8008,7 +8008,7 @@ size_t DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::extent() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 size_t DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::dims(size_t i) const {
-    MATAR_CHECK_BOUNDS(d, order_ + 1, "i", "DynamicArrayKokkos dims()");
+    MATAR_CHECK_BOUNDS(i, order_ + 1, "i", "DynamicArrayKokkos dims()");
     assert(dims_actual_size_[i] >= 0 && "Access to DynamicArrayKokkos dims is out of bounds!");
     return dims_actual_size_[i];
 }
@@ -8016,7 +8016,7 @@ size_t DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::dims(size_t i) const
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 size_t DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::dims_max(size_t i) const {
-    MATAR_CHECK_BOUNDS(d, order_ + 1, "i", "DynamicArrayKokkos dims()");
+    MATAR_CHECK_BOUNDS(i, order_ + 1, "i", "DynamicArrayKokkos dims_max()");
     assert(dims_[i] >= 0 && "Access to DynamicArrayKokkos dims is out of bounds!");
     return dims_[i];
 }
@@ -8467,7 +8467,7 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 size_t DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::dims(size_t i) const {
     i--;
-    MATAR_CHECK_BOUNDS(d, order_ + 1, "i", "DynamicMatrixKokkos dims()");
+    MATAR_CHECK_BOUNDS(i, order_ + 1, "i", "DynamicMatrixKokkos dims()");
     assert(dims_actual_size_[i] >= 0 && "Access to DynamicMatrixKokkos dims is out of bounds!");
     return dims_actual_size_[i];
 }
@@ -8476,7 +8476,7 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 size_t DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::dims_max(size_t i) const {
     i--;
-    MATAR_CHECK_BOUNDS(d, order_ + 1, "i", "DynamicMatrixKokkos dims()");
+    MATAR_CHECK_BOUNDS(i, order_ + 1, "i", "DynamicMatrixKokkos dims_max()");
     assert(dims_[i] >= 0 && "Access to DynamicMatrixKokkos dims is out of bounds!");
     return dims_[i];
 }
