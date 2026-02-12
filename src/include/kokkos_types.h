@@ -116,7 +116,6 @@ using SHArray1D     = Kokkos::View<size_t *,DefaultLayout,Kokkos::HostSpace>;
     #define MATAR_CHECK_BOUNDS(i, dim, index_name, class_name) \
         if ((i) >= (dim)) { \
             printf("\n[MATAR BOUNDS ERROR]\n"); \
-            printf("  Location: %s:%d\n", __FILE__, __LINE__); \
             printf("  Class: %s\n", class_name); \
             printf("  Array Label: %s\n", this_array_.label().c_str()); \
             printf("  Index '%s' = %zu is out of bounds (dimension size = %zu)\n\n", \
@@ -128,7 +127,6 @@ using SHArray1D     = Kokkos::View<size_t *,DefaultLayout,Kokkos::HostSpace>;
     #define MATAR_CHECK_BOUNDS_NO_LABEL(i, dim, index_name, class_name) \
         if ((i) >= (dim)) { \
             printf("\n[MATAR BOUNDS ERROR]\n"); \
-            printf("  Location: %s:%d\n", __FILE__, __LINE__); \
             printf("  Class: %s\n", class_name); \
             printf("  Index '%s' = %zu is out of bounds (dimension size = %zu)\n\n", \
                    index_name, (size_t)(i), (size_t)(dim)); \
@@ -139,7 +137,6 @@ using SHArray1D     = Kokkos::View<size_t *,DefaultLayout,Kokkos::HostSpace>;
     #define MATAR_CHECK_BOUNDS_MATRIX(i, dim, index_name, class_name) \
         if ((i) < 1 || (i) > (dim)) { \
             printf("\n[MATAR BOUNDS ERROR]\n"); \
-            printf("  Location: %s:%d\n", __FILE__, __LINE__); \
             printf("  Class: %s\n", class_name); \
             printf("  Array Label: %s\n", this_array_.label().c_str()); \
             printf("  Index '%s' = %zu is out of bounds (valid range: 1 to %zu)\n\n", \
@@ -151,7 +148,6 @@ using SHArray1D     = Kokkos::View<size_t *,DefaultLayout,Kokkos::HostSpace>;
     #define MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dim, index_name, class_name) \
         if ((i) < 1 || (i) > (dim)) { \
             printf("\n[MATAR BOUNDS ERROR]\n"); \
-            printf("  Location: %s:%d\n", __FILE__, __LINE__); \
             printf("  Class: %s\n", class_name); \
             printf("  Index '%s' = %zu is out of bounds (valid range: 1 to %zu)\n\n", \
                    index_name, (size_t)(i), (size_t)(dim)); \
@@ -162,7 +158,6 @@ using SHArray1D     = Kokkos::View<size_t *,DefaultLayout,Kokkos::HostSpace>;
     #define MATAR_CHECK_ORDER(expected, actual, class_name) \
         if ((expected) != (actual)) { \
             printf("\n[MATAR ORDER MISMATCH ERROR]\n"); \
-            printf("  Location: %s:%d\n", __FILE__, __LINE__); \
             printf("  Class: %s\n", class_name); \
             printf("  Array Label: %s\n", this_array_.label().c_str()); \
             printf("  Expected order %zu but got %zu\n\n", (size_t)(expected), (size_t)(actual)); \
@@ -173,7 +168,6 @@ using SHArray1D     = Kokkos::View<size_t *,DefaultLayout,Kokkos::HostSpace>;
     #define MATAR_CHECK_ORDER_NO_LABEL(expected, actual, class_name) \
         if ((expected) != (actual)) { \
             printf("\n[MATAR ORDER MISMATCH ERROR]\n"); \
-            printf("  Location: %s:%d\n", __FILE__, __LINE__); \
             printf("  Class: %s\n", class_name); \
             printf("  Expected order %zu but got %zu\n\n", (size_t)(expected), (size_t)(actual)); \
             assert(false && "MATAR order check failed"); \
