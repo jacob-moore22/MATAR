@@ -990,7 +990,7 @@ private:
     size_t dims_[7];
     size_t order_;
     size_t length_;
-    TArray1D this_matrix_;
+    TArray1D this_array_;
 
 public:
     FMatrixKokkos();
@@ -1088,7 +1088,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, const
     dims_[0] = dim1;
     order_ = 1;
     length_ = dim1;
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 2D constructor
@@ -1100,7 +1100,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
     dims_[1] = dim2;
     order_ = 2;
     length_ = (dim1 * dim2);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 3D constructor
@@ -1114,7 +1114,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
     dims_[2] = dim3;
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 4D constructor
@@ -1129,7 +1129,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
     dims_[3] = dim4;
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 5D constructor
@@ -1146,7 +1146,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
     dims_[4] = dim5;
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 5D constructor
@@ -1164,7 +1164,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
     dims_[5] = dim6;
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 5D constructor
@@ -1184,7 +1184,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
     dims_[6] = dim7;
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -1192,7 +1192,7 @@ KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
     MATAR_CHECK_ORDER(1, order_, "FMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 1D");
-    return this_matrix_((i - 1));
+    return this_array_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -1201,7 +1201,7 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_ORDER(2, order_, "FMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 2D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0]));
+    return this_array_((i - 1) + ((j - 1) * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -1211,7 +1211,7 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 3D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1]));
 }
 
@@ -1223,7 +1223,7 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 4D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2]));
 }
@@ -1238,7 +1238,7 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos 5D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3]));
@@ -1255,7 +1255,7 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "FMatrixKokkos 6D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -1274,7 +1274,7 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "FMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "FMatrixKokkos 7D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -1293,7 +1293,7 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>& FMatrixKokkos<T,Layout,ExecSpace
 
         order_ = temp.order_;
         length_ = temp.length_;
-        this_matrix_ = temp.this_matrix_;
+        this_array_ = temp.this_array_;
     }
     return *this;
 }
@@ -1330,21 +1330,21 @@ size_t FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::order() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::pointer() const {
-    return this_matrix_.data();
+    return this_array_.data();
 }
 
 //return the stored Kokkos view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_kokkos_view() const {
-    return this_matrix_;
+    return this_array_;
 }
 
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return this_matrix_.label();
+    return this_array_.label();
 }
 
 
@@ -1352,7 +1352,7 @@ const std::string FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() con
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void FMatrixKokkos<T, Layout, ExecSpace, MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for("SetValues_FMatrixKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        this_matrix_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -1375,7 +1375,7 @@ private:
     size_t dims_[7];
     size_t order_;
     size_t length_;
-    T* this_matrix_;
+    T* this_array_;
     
 public:
 
@@ -1460,7 +1460,7 @@ public:
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 ViewFMatrixKokkos<T>::ViewFMatrixKokkos() {
-    this_matrix_ = nullptr;
+    this_array_ = nullptr;
     length_ = order_ = 0;
     for (int i = 0; i < 7; i++) {
         dims_[i] = 0;
@@ -1474,7 +1474,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1) {
     dims_[0] = dim1;
     order_ = 1;
     length_ = dim1;
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 2D constructor
@@ -1486,7 +1486,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[1] = dim2;
     order_ = 2;
     length_ = (dim1 * dim2);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 3D constructor
@@ -1499,7 +1499,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[2] = dim3;
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 4D constructor
@@ -1514,7 +1514,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[3] = dim4;
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 5D constructor
@@ -1530,7 +1530,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[4] = dim5;
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 6D constructor
@@ -1548,7 +1548,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[5] = dim6;
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 6D constructor
@@ -1567,7 +1567,7 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[6] = dim7;
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 
@@ -1576,7 +1576,7 @@ KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i) const {
     MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewFMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 1D");
-    return this_matrix_[(i - 1)];
+    return this_array_[(i - 1)];
 }
 
 template <typename T>
@@ -1585,7 +1585,7 @@ T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j) const {
     MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewFMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 2D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])];
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])];
 }
 
 template <typename T>
@@ -1597,7 +1597,7 @@ T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k) const
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 3D");
     
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])];
 }
 
@@ -1610,7 +1610,7 @@ T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 4D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])];
 }
@@ -1625,7 +1625,7 @@ T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos 5D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])];
@@ -1643,7 +1643,7 @@ T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewFMatrixKokkos 6D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -1663,7 +1663,7 @@ T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewFMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(o, dims_[6], "o", "ViewFMatrixKokkos 7D");
-    return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
+    return this_array_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -1701,13 +1701,13 @@ size_t ViewFMatrixKokkos<T>::order() const {
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T* ViewFMatrixKokkos<T>::pointer() const {
-    return this_matrix_;
+    return this_array_;
 }
 
 template <typename T>
 void ViewFMatrixKokkos<T>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        this_matrix_[i] = val;
+        this_array_[i] = val;
     });
 }
 
@@ -2643,7 +2643,7 @@ private:
     size_t length_;
     size_t order_;  // tensor order (rank)
     bool   lock_ = false;
-    TArray1D this_matrix_;
+    TArray1D this_array_;
 
 public:
     DFMatrixKokkos();
@@ -2762,9 +2762,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, con
     dims_[0] = dim1;
     order_ = 1;
     length_ = dim1;
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1);
 }
 
 // Overloaded 2D constructor
@@ -2775,9 +2775,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
     dims_[1] = dim2;
     order_ = 2;
     length_ = (dim1 * dim2);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1, dim2);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1, dim2);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2789,9 +2789,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
     dims_[2] = dim3;
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2804,9 +2804,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
     dims_[3] = dim4;
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2821,9 +2821,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
     dims_[4] = dim5;
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4, dim5);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4, dim5);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2839,9 +2839,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
     dims_[5] = dim6;
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2859,9 +2859,9 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
     dims_[6] = dim7;
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewFMatrix
-    host = ViewFMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6, dim7);
+    host = ViewFMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6, dim7);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2869,7 +2869,7 @@ KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
     MATAR_CHECK_ORDER(1, order_, "DFMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 1D");
-    return this_matrix_.view_device()((i - 1));
+    return this_array_.view_device()((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2878,7 +2878,7 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_ORDER(2, order_, "DFMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 2D");
-    return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0]));
+    return this_array_.view_device()((i - 1) + ((j - 1) * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -2888,7 +2888,7 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 3D");
-    return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
+    return this_array_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1]));
 }
 
@@ -2900,7 +2900,7 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 4D");
-    return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
+    return this_array_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2]));
 }
@@ -2915,7 +2915,7 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos 5D");
-    return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
+    return this_array_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                        + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3]));
@@ -2932,7 +2932,7 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DFMatrixKokkos 6D");
-    return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
+    return this_array_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                        + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -2951,7 +2951,7 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DFMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DFMatrixKokkos 7D");
-    return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
+    return this_array_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                        + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -2971,7 +2971,7 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>& DFMatrixKokkos<T,Layout,ExecSpa
 
         order_ = temp.order_;
         length_ = temp.length_;
-        this_matrix_ = temp.this_matrix_;
+        this_array_ = temp.this_array_;
         host = temp.host;
         lock_ = temp.lock_;
     }
@@ -3010,42 +3010,42 @@ size_t DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::order() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::device_pointer() const {
-    return this_matrix_.view_device().data();
+    return this_array_.view_device().data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::host_pointer() const {
-    return this_matrix_.view_host().data();
+    return this_array_.view_host().data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_host() {
     assert(!lock_ && "This data is locked, no copy will be done.");
     if (lock_) return;
-    this_matrix_.template modify<typename TArray1D::execution_space>();
-    this_matrix_.template sync<typename TArray1D::host_mirror_space>();
+    this_array_.template modify<typename TArray1D::execution_space>();
+    this_array_.template sync<typename TArray1D::host_mirror_space>();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_device() {
     assert(!lock_ && "This data is locked, no copy will be done.");
     if (lock_) return;
-    this_matrix_.template modify<typename TArray1D::host_mirror_space>();
-    this_matrix_.template sync<typename TArray1D::execution_space>();
+    this_array_.template modify<typename TArray1D::host_mirror_space>();
+    this_array_.template sync<typename TArray1D::execution_space>();
 }
 
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return this_matrix_.view_host().label();
+    return this_array_.view_host().label();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        this_matrix_.view_device()(i) = val;
+        this_array_.view_device()(i) = val;
     });
 }
 
@@ -3081,8 +3081,8 @@ private:
     size_t dims_[7];
     size_t length_;
     size_t order_;  // tensor order (rank)
-    TArray1D this_matrix_;
-    TArray1DHost this_matrix_host_;
+    TArray1D this_array_;
+    TArray1DHost this_array_host_;
     T * temp_inp_matrix_;
 
 public:
@@ -3199,12 +3199,12 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 1;
     length_ = dim1;
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
-    // Create host ViewFMatrix. Note: inp_matrix and this_matrix_host_.data() are the same pointer
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
+    // Create host ViewFMatrix. Note: inp_matrix and this_array_host_.data() are the same pointer
     host = ViewFMatrix <T> (inp_matrix, dim1);
 }
 
@@ -3217,11 +3217,11 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 2;
     length_ = (dim1 * dim2);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewFMatrix
     host = ViewFMatrix <T> (inp_matrix, dim1, dim2);
 }
@@ -3236,11 +3236,11 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewFMatrix
     host = ViewFMatrix <T> (inp_matrix, dim1, dim2, dim3);
 }
@@ -3256,11 +3256,11 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewFMatrix
     host = ViewFMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4);
 }
@@ -3278,11 +3278,11 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewFMatrix
     host = ViewFMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4, dim5);
 }
@@ -3301,11 +3301,11 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewFMatrix
     host = ViewFMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4, dim5, dim6);
 }
@@ -3326,11 +3326,11 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewFMatrix
     host = ViewFMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4, dim5, dim6, dim7);
 }
@@ -3340,7 +3340,7 @@ KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
     MATAR_CHECK_ORDER(1, order_, "DViewFMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 1D");
-    return this_matrix_((i - 1));
+    return this_array_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -3349,7 +3349,7 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_ORDER(2, order_, "DViewFMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 2D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0]));
+    return this_array_((i - 1) + ((j - 1) * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -3359,7 +3359,7 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 3D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1]));
 }
 
@@ -3371,7 +3371,7 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 4D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2]));
 }
@@ -3386,7 +3386,7 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos 5D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3]));
@@ -3403,7 +3403,7 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewFMatrixKokkos 6D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -3422,7 +3422,7 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewFMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DViewFMatrixKokkos 7D");
-    return this_matrix_((i - 1) + ((j - 1) * dims_[0])
+    return this_array_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
                                 + ((m - 1) * dims_[0] * dims_[1] * dims_[2] * dims_[3])
@@ -3443,8 +3443,8 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>& DViewFMatrixKokkos<T,Layout
         order_ = temp.order_;
         length_ = temp.length_;
         temp_inp_matrix_ = temp.temp_inp_matrix_;
-        this_matrix_host_ = temp.this_matrix_host_;
-        this_matrix_ = temp.this_matrix_;
+        this_array_host_ = temp.this_array_host_;
+        this_array_ = temp.this_array_;
 	host = temp.host;
     }
     
@@ -3482,39 +3482,39 @@ size_t DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::order() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::device_pointer() const {
-    return this_matrix_.data();
+    return this_array_.data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::host_pointer() const {
-    return this_matrix_host_.data();
+    return this_array_host_.data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_host() {
     // Deep copy of device view to host view
-    deep_copy(this_matrix_host_, this_matrix_);
+    deep_copy(this_array_host_, this_array_);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_device() {
     // Deep copy of host view to device view
-    deep_copy(this_matrix_, this_matrix_host_);
+    deep_copy(this_array_, this_array_host_);
 }
 
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return this_matrix_.label();
+    return this_array_.label();
 }
 
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        this_matrix_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -4270,7 +4270,7 @@ private:
     size_t dims_[7];
     size_t order_;
     size_t length_;
-    TArray1D this_matrix_;
+    TArray1D this_array_;
 
 public:
     CMatrixKokkos();
@@ -4368,7 +4368,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, const
     dims_[0] = dim1;
     order_ = 1;
     length_ = dim1;
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 2D constructor
@@ -4380,7 +4380,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
     dims_[1] = dim2;
     order_ = 2;
     length_ = (dim1 * dim2);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 3D constructor
@@ -4394,7 +4394,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
     dims_[2] = dim3;
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 4D constructor
@@ -4409,7 +4409,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
     dims_[3] = dim4;
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 5D constructor
@@ -4427,7 +4427,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
     dims_[4] = dim5;
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 6D constructor
@@ -4445,7 +4445,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
     dims_[5] = dim6;
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // Overloaded 7D constructor
@@ -4465,7 +4465,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
     dims_[6] = dim7;
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -4473,7 +4473,7 @@ KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
     MATAR_CHECK_ORDER(1, order_, "CMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 1D");
-    return this_matrix_((i - 1));
+    return this_array_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -4482,7 +4482,7 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_ORDER(2, order_, "CMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 2D");
-    return this_matrix_((j - 1) + ((i - 1) * dims_[1]));
+    return this_array_((j - 1) + ((i - 1) * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -4492,7 +4492,7 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 3D");
-    return this_matrix_((k - 1) + ((j - 1) * dims_[2])
+    return this_array_((k - 1) + ((j - 1) * dims_[2])
                                 + ((i - 1) * dims_[2] * dims_[1]));
 }
 
@@ -4504,7 +4504,7 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 4D");
-    return this_matrix_((l - 1) + ((k - 1) * dims_[3])
+    return this_array_((l - 1) + ((k - 1) * dims_[3])
                                 + ((j - 1) * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[3] * dims_[2] * dims_[1]));
 }
@@ -4519,7 +4519,7 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos 5D");
-    return this_matrix_((m - 1) + ((l - 1) * dims_[4])
+    return this_array_((m - 1) + ((l - 1) * dims_[4])
                                 + ((k - 1) * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[4] * dims_[3] * dims_[2] * dims_[1]));
@@ -4536,7 +4536,7 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "CMatrixKokkos 6D");
-    return this_matrix_((n - 1) + ((m - 1) * dims_[5])
+    return this_array_((n - 1) + ((m - 1) * dims_[5])
                                 + ((l - 1) * dims_[5] * dims_[4])
                                 + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[5] * dims_[4] * dims_[3] * dims_[2])
@@ -4555,7 +4555,7 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "CMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "CMatrixKokkos 7D");
-    return this_matrix_((o-1) + ((n - 1) * dims_[6])
+    return this_array_((o-1) + ((n - 1) * dims_[6])
                               + ((m - 1) * dims_[6] * dims_[5])
                               + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
                               + ((k - 1) * dims_[6] * dims_[5] * dims_[4] * dims_[3])
@@ -4577,7 +4577,7 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits> & CMatrixKokkos<T,Layout,ExecSpac
 
         order_ = temp.order_;
         length_ = temp.length_;
-        this_matrix_ = temp.this_matrix_;
+        this_array_ = temp.this_array_;
     }
     
     return *this;
@@ -4613,28 +4613,28 @@ size_t CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::order() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::pointer() const {
-    return this_matrix_.data();
+    return this_array_.data();
 }
 
 //return the stored Kokkos view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_kokkos_view() const {
-    return this_matrix_;
+    return this_array_;
 }
 
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return this_matrix_.label();
+    return this_array_.label();
 }
 
 // set values of array
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void CMatrixKokkos<T, Layout, ExecSpace, MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for("SetValues_CMatrixKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        this_matrix_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -4657,7 +4657,7 @@ private:
     size_t dims_[7];
     size_t order_;
     size_t length_;
-    T* this_matrix_;
+    T* this_array_;
 
 public:
     KOKKOS_INLINE_FUNCTION
@@ -4737,7 +4737,7 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 ViewCMatrixKokkos<T>::ViewCMatrixKokkos(){
     length_ = order_ = 0;
-    this_matrix_ = NULL;
+    this_array_ = NULL;
     for (int i = 0; i < 7; i++) {
         dims_[i] = 0;
     }
@@ -4750,7 +4750,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1) {
     dims_[0] = dim1;
     order_ = 1;
     length_ = dim1;
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 2D constructor
@@ -4762,7 +4762,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1,
     dims_[1] = dim2;
     order_ = 2;
     length_ = (dim1 * dim2);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 3D constructor
@@ -4775,7 +4775,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1, size_t dim2
     dims_[2] = dim3;
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 4D constructor
@@ -4789,7 +4789,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1, size_t dim2
     dims_[3] = dim4;
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 5D constructor
@@ -4804,7 +4804,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1, size_t dim2
     dims_[4] = dim5;
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 6D constructor
@@ -4821,7 +4821,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1, size_t dim2
     dims_[5] = dim6;
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 // Overloaded 7D constructor
@@ -4839,7 +4839,7 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1, size_t dim2
     dims_[6] = dim7;
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
-    this_matrix_ = some_matrix;
+    this_array_ = some_matrix;
 }
 
 template <typename T>
@@ -4847,7 +4847,7 @@ KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i) const {
     MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewCMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 1D");
-    return this_matrix_[(i - 1)];
+    return this_array_[(i - 1)];
 }
 
 template <typename T>
@@ -4856,7 +4856,7 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j) const {
     MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewCMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 2D");
-    return this_matrix_[(j - 1) + ((i - 1) * dims_[1])];
+    return this_array_[(j - 1) + ((i - 1) * dims_[1])];
 }
 
 template <typename T>
@@ -4866,7 +4866,7 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k) const {
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 3D");
-    return this_matrix_[(k - 1) + ((j - 1) * dims_[2])
+    return this_array_[(k - 1) + ((j - 1) * dims_[2])
                                 + ((i - 1) * dims_[2] * dims_[1])];
 }
 
@@ -4878,7 +4878,7 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j , size_t k, size_t l) con
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 4D");
-    return this_matrix_[(l - 1) + ((k - 1) * dims_[3])
+    return this_array_[(l - 1) + ((k - 1) * dims_[3])
                                 + ((j - 1) * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[3] * dims_[2] * dims_[1])];
 }
@@ -4893,7 +4893,7 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos 5D");
-    return this_matrix_[(m - 1) + ((l - 1) * dims_[4])
+    return this_array_[(m - 1) + ((l - 1) * dims_[4])
                                 + ((k - 1) * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[4] * dims_[3] * dims_[2] * dims_[1])];
@@ -4910,7 +4910,7 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewCMatrixKokkos 6D");
-    return this_matrix_[(n - 1) + ((m - 1) * dims_[5])
+    return this_array_[(n - 1) + ((m - 1) * dims_[5])
                                 + ((l - 1) * dims_[5] * dims_[4])
                                 + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[5] * dims_[4] * dims_[3] * dims_[2])
@@ -4929,7 +4929,7 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewCMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(o, dims_[6], "o", "ViewCMatrixKokkos 7D");
-    return this_matrix_[o + ((n - 1) * dims_[6])
+    return this_array_[o + ((n - 1) * dims_[6])
                           + ((m - 1) * dims_[6] * dims_[5])
                           + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
                           + ((k - 1) * dims_[6] * dims_[5] * dims_[4] * dims_[3])
@@ -4968,13 +4968,13 @@ size_t ViewCMatrixKokkos<T>::order() const {
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T* ViewCMatrixKokkos<T>::pointer() const {
-    return this_matrix_;
+    return this_array_;
 }
 
 template <typename T>
 void ViewCMatrixKokkos<T>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        this_matrix_[i] = val;
+        this_array_[i] = val;
     });
 }
 
@@ -5919,7 +5919,7 @@ private:
     size_t length_;
     size_t order_;  // tensor order (rank)
     bool   lock_ = false;
-    TArray1D this_matrix_;
+    TArray1D this_array_;
 
 public:
     // Data member to access host view
@@ -6037,9 +6037,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, con
     dims_[0] = dim1;
     order_ = 1;
     length_ = dim1;
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1);
 }
 
 // Overloaded 2D constructor
@@ -6050,9 +6050,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
     dims_[1] = dim2;
     order_ = 2;
     length_ = (dim1 * dim2);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1, dim2);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1, dim2);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6064,9 +6064,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
     dims_[2] = dim3;
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6079,9 +6079,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
     dims_[3] = dim4;
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6096,9 +6096,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
     dims_[4] = dim5;
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4, dim5);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4, dim5);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6114,9 +6114,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
     dims_[5] = dim6;
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6134,9 +6134,9 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
     dims_[6] = dim7;
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
-    this_matrix_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
     // Create host ViewCMatrix
-    host = ViewCMatrix <T> (this_matrix_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6, dim7);
+    host = ViewCMatrix <T> (this_array_.view_host().data(), dim1, dim2, dim3, dim4, dim5, dim6, dim7);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6144,7 +6144,7 @@ KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
     MATAR_CHECK_ORDER(1, order_, "DCMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 1D");
-    return this_matrix_.view_device()((i - 1));
+    return this_array_.view_device()((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6153,7 +6153,7 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_ORDER(2, order_, "DCMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 2D");
-    return this_matrix_.view_device()((j - 1) + ((i - 1) * dims_[1]));
+    return this_array_.view_device()((j - 1) + ((i - 1) * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6163,7 +6163,7 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 3D");
-    return this_matrix_.view_device()((k - 1) + ((j - 1) * dims_[2])
+    return this_array_.view_device()((k - 1) + ((j - 1) * dims_[2])
                                        + ((i - 1) * dims_[2] * dims_[1]));
 }
 
@@ -6175,7 +6175,7 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 4D");
-    return this_matrix_.view_device()((l - 1) + ((k - 1) * dims_[3])
+    return this_array_.view_device()((l - 1) + ((k - 1) * dims_[3])
                                        + ((j - 1) * dims_[3] * dims_[2])
                                        + ((i - 1) * dims_[3] * dims_[2] * dims_[1]));
 }
@@ -6190,7 +6190,7 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos 5D");
-    return this_matrix_.view_device()((m - 1) + ((l - 1) * dims_[4])
+    return this_array_.view_device()((m - 1) + ((l - 1) * dims_[4])
                                        + ((k - 1) * dims_[4] * dims_[3])
                                        + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
                                        + ((i - 1) * dims_[4] * dims_[3] * dims_[2] * dims_[1]));
@@ -6207,7 +6207,7 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DCMatrixKokkos 6D");
-    return this_matrix_.view_device()((n - 1) + ((m - 1) * dims_[5])
+    return this_array_.view_device()((n - 1) + ((m - 1) * dims_[5])
                                        + ((l - 1) * dims_[5] * dims_[4])
                                        + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
                                        + ((j - 1) * dims_[5] * dims_[4] * dims_[3] * dims_[2])
@@ -6226,7 +6226,7 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DCMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DCMatrixKokkos 7D");
-    return this_matrix_.view_device()((o-1) + ((n - 1) * dims_[6])
+    return this_array_.view_device()((o-1) + ((n - 1) * dims_[6])
                                      + ((m - 1) * dims_[6] * dims_[5])
                                      + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
                                      + ((k - 1) * dims_[6] * dims_[5] * dims_[4] * dims_[3])
@@ -6246,7 +6246,7 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>& DCMatrixKokkos<T,Layout,ExecSpa
 
         order_ = temp.order_;
         length_ = temp.length_;
-        this_matrix_ = temp.this_matrix_;
+        this_array_ = temp.this_array_;
         host = temp.host;
         lock_ = temp.lock_;
     }
@@ -6285,42 +6285,42 @@ size_t DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::order() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::device_pointer() const {
-    return this_matrix_.view_device().data();
+    return this_array_.view_device().data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::host_pointer() const {
-    return this_matrix_.view_host().data();
+    return this_array_.view_host().data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_host() {
     assert(!lock_ && "This data is locked, no copy will be done.");
     if (lock_) return;
-    this_matrix_.template modify<typename TArray1D::execution_space>();
-    this_matrix_.template sync<typename TArray1D::host_mirror_space>();
+    this_array_.template modify<typename TArray1D::execution_space>();
+    this_array_.template sync<typename TArray1D::host_mirror_space>();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_device() {
     assert(!lock_ && "This data is locked, no copy will be done.");
     if (lock_) return;
-    this_matrix_.template modify<typename TArray1D::host_mirror_space>();
-    this_matrix_.template sync<typename TArray1D::execution_space>();
+    this_array_.template modify<typename TArray1D::host_mirror_space>();
+    this_array_.template sync<typename TArray1D::execution_space>();
 }
 
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return this_matrix_.view_host().label();
+    return this_array_.view_host().label();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        this_matrix_.view_device()(i) = val;
+        this_array_.view_device()(i) = val;
     });
 }
 
@@ -6356,8 +6356,8 @@ private:
     size_t dims_[7];
     size_t length_;
     size_t order_;  // tensor order (rank)
-    TArray1D this_matrix_;
-    TArray1DHost this_matrix_host_;
+    TArray1D this_array_;
+    TArray1DHost this_array_host_;
     T * temp_inp_matrix_;
 
 public:
@@ -6472,12 +6472,12 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 1;
     length_ = dim1;
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
-    // Create host ViewCMatrix. Note: inp_matrix and this_matrix_host_.data() are the same pointer
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
+    // Create host ViewCMatrix. Note: inp_matrix and this_array_host_.data() are the same pointer
     host = ViewCMatrix <T> (inp_matrix, dim1);
 }
 
@@ -6490,11 +6490,11 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 2;
     length_ = (dim1 * dim2);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewCMatrix
     host = ViewCMatrix <T> (inp_matrix, dim1, dim2);
 }
@@ -6509,11 +6509,11 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 3;
     length_ = (dim1 * dim2 * dim3);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewCMatrix
     host = ViewCMatrix <T> (inp_matrix, dim1, dim2, dim3);
 }
@@ -6529,11 +6529,11 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 4;
     length_ = (dim1 * dim2 * dim3 * dim4);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewCMatrix
     host = ViewCMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4);
 }
@@ -6551,11 +6551,11 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 5;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewCMatrix
     host = ViewCMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4, dim5);
 }
@@ -6574,11 +6574,11 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 6;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewCMatrix
     host = ViewCMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4, dim5, dim6);
 }
@@ -6599,11 +6599,11 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
     order_ = 7;
     length_ = (dim1 * dim2 * dim3 * dim4 * dim5 * dim6 * dim7);
     // Create a 1D host view of the external allocation
-    this_matrix_host_ = TArray1DHost(inp_matrix, length_);
+    this_array_host_ = TArray1DHost(inp_matrix, length_);
     // Assign temp point to inp_matrix pointer that is passed in
     temp_inp_matrix_ = inp_matrix;
     // Create a device copy of that host view
-    this_matrix_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_matrix_host_);
+    this_array_ = create_mirror_view_and_copy(Kokkos::view_alloc(memspace, tag_string), this_array_host_);
     // Create host ViewCMatrix
     host = ViewCMatrix <T> (inp_matrix, dim1, dim2, dim3, dim4, dim5, dim6, dim7);
 }
@@ -6613,7 +6613,7 @@ KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
     MATAR_CHECK_ORDER(1, order_, "DViewCMatrixKokkos 1D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 1D");
-    return this_matrix_((i - 1));
+    return this_array_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6622,7 +6622,7 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_ORDER(2, order_, "DViewCMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 2D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 2D");
-    return this_matrix_((j - 1) + ((i - 1) * dims_[1]));
+    return this_array_((j - 1) + ((i - 1) * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -6632,7 +6632,7 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 3D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 3D");
-    return this_matrix_((k - 1) + ((j - 1) * dims_[2])
+    return this_array_((k - 1) + ((j - 1) * dims_[2])
                                 + ((i - 1) * dims_[2] * dims_[1]));
 }
 
@@ -6644,7 +6644,7 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 4D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 4D");
-    return this_matrix_((l - 1) + ((k - 1) * dims_[3])
+    return this_array_((l - 1) + ((k - 1) * dims_[3])
                                 + ((j - 1) * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[3] * dims_[2] * dims_[1]));
 }
@@ -6659,7 +6659,7 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 5D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos 5D");
-    return this_matrix_((m - 1) + ((l - 1) * dims_[4])
+    return this_array_((m - 1) + ((l - 1) * dims_[4])
                                 + ((k - 1) * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[4] * dims_[3] * dims_[2] * dims_[1]));
@@ -6676,7 +6676,7 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos 6D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewCMatrixKokkos 6D");
-    return this_matrix_((n - 1) + ((m - 1) * dims_[5])
+    return this_array_((n - 1) + ((m - 1) * dims_[5])
                                 + ((l - 1) * dims_[5] * dims_[4])
                                 + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[5] * dims_[4] * dims_[3] * dims_[2])
@@ -6695,7 +6695,7 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
     MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewCMatrixKokkos 7D");
     MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DViewCMatrixKokkos 7D");
-    return this_matrix_(o + ((n - 1) * dims_[6])
+    return this_array_(o + ((n - 1) * dims_[6])
                           + ((m - 1) * dims_[6] * dims_[5])
                           + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
                           + ((k - 1) * dims_[6] * dims_[5] * dims_[4] * dims_[3])
@@ -6716,8 +6716,8 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>& DViewCMatrixKokkos<T,Layout
         order_ = temp.order_;
         length_ = temp.length_;
         temp_inp_matrix_ = temp.temp_inp_matrix_;
-        this_matrix_host_ = temp.this_matrix_host_;
-        this_matrix_ = temp.this_matrix_;
+        this_array_host_ = temp.this_array_host_;
+        this_array_ = temp.this_array_;
         host = temp.host;
     }
     
@@ -6755,38 +6755,38 @@ size_t DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::order() const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::device_pointer() const {
-    return this_matrix_.data();
+    return this_array_.data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::host_pointer() const {
-    return this_matrix_host_.data();
+    return this_array_host_.data();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_host() {
     // Deep copy of device view to host view
-    deep_copy(this_matrix_host_, this_matrix_);
+    deep_copy(this_array_host_, this_array_);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::update_device() {
     // Deep copy of host view to device view
-    deep_copy(this_matrix_, this_matrix_host_);
+    deep_copy(this_array_, this_array_host_);
 }
 
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return this_matrix_.label();
+    return this_array_.label();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        this_matrix_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -8561,7 +8561,7 @@ class RaggedRightArrayKokkos {
     using Strides1D = Kokkos::View<size_t *,ILayout, ExecSpace, MemoryTraits>;
     
 private:
-    TArray1D array_;
+    TArray1D this_array_;
     
     size_t dim1_;
     size_t length_;
@@ -8801,7 +8801,7 @@ void RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::data_setup
     #endif
 
     //allocate view
-    array_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // A method to return the stride size
@@ -8864,13 +8864,13 @@ T& RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::operator()(s
     MATAR_CHECK_BOUNDS(i, dim1_, "i", "RaggedRightArrayKokkos");  // die if >= dim1
     MATAR_CHECK_BOUNDS(j, stride(i), "j", "RaggedRightArrayKokkos");  // die if >= stride
     
-    return array_(j + start);
+    return this_array_(j + start);
 } // End operator()
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 T* RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::pointer() {
-    return array_.data();
+    return this_array_.data();
 }
 
 
@@ -8938,7 +8938,7 @@ RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout> & RaggedRightArr
     //    });
     //Kokkos::fence();
     
-    array_ = temp.array_;
+    this_array_ = temp.this_array_;
     mystrides_ = temp.mystrides_;
 
     /*
@@ -8962,14 +8962,14 @@ RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout> & RaggedRightArr
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::get_kokkos_view() {
-    return array_;
+    return this_array_;
 }
 
 //set values to input
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 void RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::set_values(T val) {
     Kokkos::parallel_for("SetValues_RaggedRightArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -8977,7 +8977,7 @@ void RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::set_values
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 const std::string RaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::get_name() const{
-    return array_.label();
+    return this_array_.label();
 }
 
 // Destructor
@@ -9000,7 +9000,7 @@ class RaggedRightArrayofVectorsKokkos {
     using Strides1D = Kokkos::View<size_t *,ILayout, ExecSpace, MemoryTraits>;
     
 private:
-    TArray1D array_;
+    TArray1D this_array_;
     
     size_t dim1_, vector_dim_;
     size_t length_;
@@ -9240,7 +9240,7 @@ void RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::d
     #endif
 
     //allocate view
-    array_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // A method to return the stride size
@@ -9295,13 +9295,13 @@ T& RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::ope
     MATAR_CHECK_BOUNDS(j, stride(i), "j", "RaggedRightArrayKokkos");  // die if >= stride
     MATAR_CHECK_BOUNDS(k, vector_dim_, "k", "RaggedRightArrayKokkos");  // die if >= vector_dim
     
-    return array_(j*vector_dim_ + start + k);
+    return this_array_(j*vector_dim_ + start + k);
 } // End operator()
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 T* RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::pointer() {
-    return array_.data();
+    return this_array_.data();
 }
 
 
@@ -9318,7 +9318,7 @@ RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout> & Ragge
     start_index_ = temp.start_index_;
     length_ = temp.length_;
     
-    array_ = temp.array_;
+    this_array_ = temp.this_array_;
     mystrides_ = temp.mystrides_;
   }
     
@@ -9329,14 +9329,14 @@ RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout> & Ragge
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::get_kokkos_view() {
-    return array_;
+    return this_array_;
 }
 
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 void RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits, ILayout>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, length_), KOKKOS_CLASS_LAMBDA(const int i){
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -9344,7 +9344,7 @@ void RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits, ILayout>::
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 const std::string RaggedRightArrayofVectorsKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::get_name() const{
-    return array_.label();
+    return this_array_.label();
 }
 
 // Destructor
@@ -9368,7 +9368,7 @@ class RaggedDownArrayKokkos {
     using Strides1D = Kokkos::View<size_t *, ILayout, ExecSpace, MemoryTraits>;
     
 private:
-    TArray1D array_;
+    TArray1D this_array_;
     
     size_t dim2_;
     size_t length_;
@@ -9555,7 +9555,7 @@ void RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::data_setup(
     #endif
 
     //allocate view
-    array_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // A method to return the stride size
@@ -9580,7 +9580,7 @@ T& RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::operator()(si
     MATAR_CHECK_BOUNDS(i, stride(j), "i", "RaggedDownArrayKokkos");  // die if >= stride
     MATAR_CHECK_BOUNDS(j, dim2_, "j", "RaggedDownArrayKokkos");  // die if >= dim1
     
-    return array_(i + start);
+    return this_array_(i + start);
 } // End operator()
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
@@ -9676,7 +9676,7 @@ operator= (const RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout> 
     Kokkos::fence();
     */
     length_ = temp.length_;
-    array_ = temp.length_;
+    this_array_ = temp.length_;
     mystrides_ = temp.mystrides_;
 
     /*
@@ -9700,14 +9700,14 @@ operator= (const RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout> 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::get_kokkos_view() {
-    return array_;
+    return this_array_;
 }
 
 //set values to input
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 void RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::set_values(T val) {
     Kokkos::parallel_for("SetValues_RaggedDownArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -9715,7 +9715,7 @@ void RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::set_values(
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
 KOKKOS_INLINE_FUNCTION
 const std::string RaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::get_name() const{
-    return array_.label();
+    return this_array_.label();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits, typename ILayout>
@@ -9744,7 +9744,7 @@ class DynamicRaggedRightArrayKokkos {
 private:
     // THIS WILL BE A GPU POINTER!
     SArray1D stride_;
-    TArray1D array_;
+    TArray1D this_array_;
     
     size_t dim1_;
     size_t dim2_;
@@ -9843,7 +9843,7 @@ DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DynamicRaggedRig
     #endif
 
     //allocate view
-    array_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // A method to set the stride size for row i
@@ -9871,7 +9871,7 @@ T& DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(si
     // Cannot assert on Kokkos View
     //assert(j < stride_[i] && "j is out of stride bounds in DynamicRaggedRight");  // die if >= stride
     
-    return array_(j + i*dim2_);
+    return this_array_(j + i*dim2_);
 }
 
 //overload = operator
@@ -9886,7 +9886,7 @@ DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>&
         dim2_ = temp.dim2_;
         length_ = temp.length_;
         stride_ = temp.stride_;
-        array_ = temp.array_;
+        this_array_ = temp.this_array_;
         /*
         #ifdef HAVE_CLASS_LAMBDA
         Kokkos::parallel_for("StrideZeroOut", dim1_, KOKKOS_CLASS_LAMBDA(const int i) {
@@ -9906,14 +9906,14 @@ DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>&
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::get_kokkos_view() {
-    return array_;
+    return this_array_;
 }
 
 //set values to input
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for("SetValues_DynamicRaggedRightArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -9922,18 +9922,18 @@ void DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values_
     // Kokkos::parallel_for( Kokkos::TeamPolicy<>( dim1_, Kokkos::AUTO, 32 ), KOKKOS_CLASS_LAMBDA ( const Kokkos::TeamPolicy<>::member_type &teamMember ) {
     //     const int i_i = teamMember.league_rank();
     //     Kokkos::parallel_for( Kokkos::TeamThreadRange( teamMember, 0, stride_(i_i) ), [&] ( const int (j_j) ) {
-    //         array_(dim2_*i_i+j_j) = val;    
+    //         this_array_(dim2_*i_i+j_j) = val;    
     //     });
     // });
     Kokkos::parallel_for("SetValues_DynamicRaggedRightArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return array_.label();
+    return this_array_.label();
 }
 
 // Destructor
@@ -9958,7 +9958,7 @@ class DynamicRaggedDownArrayKokkos {
 
 private:
     SArray1D stride_;
-    TArray1D array_;
+    TArray1D this_array_;
     
     size_t dim1_;
     size_t dim2_;
@@ -10060,7 +10060,7 @@ DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DynamicRaggedDown
     #endif
 
     //allocate view
-    array_ = TArray1D(tag_string, length_);
+    this_array_ = TArray1D(tag_string, length_);
 }
 
 // A method to set the stride size for column j
@@ -10097,7 +10097,7 @@ T& DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(siz
     // Can't do this assert with a Kokkos View
     //assert(i < stride_[j] && "i is out of stride bounds in DynamicRaggedDownArrayKokkos");  // die if >= stride
     
-    return array_(i + j*dim1_);
+    return this_array_(i + j*dim1_);
 }
 
 //overload = operator
@@ -10112,7 +10112,7 @@ DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>&
         dim2_ = temp.dim2_;
         length_ = temp.length_;
         stride_ = temp.stride_;
-        array_ = temp.array_;
+        this_array_ = temp.this_array_;
         /*
         #ifdef HAVE_CLASS_LAMBDA
         Kokkos::parallel_for("StrideZeroOut", dim2_, KOKKOS_CLASS_LAMBDA(const int j) {
@@ -10132,14 +10132,14 @@ DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>&
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 Kokkos::View<T*, Layout, ExecSpace, MemoryTraits> DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::get_kokkos_view() {
-    return array_;
+    return this_array_;
 }
 
 //set values to input
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for("SetValues_DynamicRaggedDownArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -10148,18 +10148,18 @@ void DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values_s
     // Kokkos::parallel_for( Kokkos::TeamPolicy<>( dim2_, Kokkos::AUTO, 32 ), KOKKOS_CLASS_LAMBDA ( const Kokkos::TeamPolicy<>::member_type &teamMember ) {
     //     const int j_j = teamMember.league_rank();
     //     Kokkos::parallel_for( Kokkos::TeamThreadRange( teamMember, 0, stride_(j_j) ), [&] ( const int (i_i) ) {
-    //         array_(dim1_*j_j+i_i) = val;    
+    //         this_array_(dim1_*j_j+i_i) = val;    
     //     });
     // });
     Kokkos::parallel_for("SetValues_DynamicRaggedDownArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 // Get the name of the view
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DynamicRaggedDownArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return array_.label();
+    return this_array_.label();
 }
 
 // Destructor
@@ -10180,7 +10180,7 @@ class CSRArrayKokkos {
   private: // What ought to be private ?
     size_t dim1_, dim2_;
     size_t nnz_;
-    TArray1D array_;
+    TArray1D this_array_;
     SArray1D column_index_;
     SArray1D start_index_;
     TArray1D miss_;
@@ -10377,7 +10377,7 @@ CSRArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::CSRArrayKokkos(
     dim1_ = dim1;
     dim2_ = dim2;
     start_index_ = start_index.get_kokkos_view();
-    array_ = array.get_kokkos_view();
+    this_array_ = array.get_kokkos_view();
     column_index_ = colum_index.get_kokkos_view();
     nnz_ = colum_index.extent();
     miss_ = TArray1D("miss", 1);
@@ -10412,13 +10412,13 @@ CSRArrayKokkos<T,Layout, ExecSpace,MemoryTraits>::CSRArrayKokkos(const CArrayKok
     }
     
     column_index_ = Kokkos::View<size_t*>("column Indices", nnz_);
-    array_ = Kokkos::View<T*>("array elements", nnz_);
+    this_array_ = Kokkos::View<T*>("array elements", nnz_);
     size_t next = 0 ;
     for(size_t i = 0; i < dim1_; i++){
             for(size_t j =0 ; j < dim2_; j++){
                     if(dense(i,j) != 0){
          //               column_index_(next) = j;
-         //               array_(next) = dense(i,j);
+         //               this_array_(next) = dense(i,j);
                         next++;
                     }
             }
@@ -10455,7 +10455,7 @@ T& CSRArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::operator()(size_t i, size
     size_t k;
     for(k = 0; k < row_end - row_start; k++){
         if(column_index_[row_start + k] == j){
-            return array_.data()[row_start + k];
+            return this_array_.data()[row_start + k];
         }
     }
     miss_[0] = (T) NULL;
@@ -10471,7 +10471,7 @@ T& CSRArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::value(size_t i, size_t j)
     size_t k;
     for(k = 0; k < row_end - row_start; k++){
         if(column_index_[row_start + k] == j){
-            return array_.data()[row_start + k];
+            return this_array_.data()[row_start + k];
         }
     }
     miss_[0] = (T) NULL;
@@ -10481,7 +10481,7 @@ T& CSRArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::value(size_t i, size_t j)
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* CSRArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::pointer() const{
-    return array_.data();
+    return this_array_.data();
 }
 
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -10500,7 +10500,7 @@ CSRArrayKokkos<T,Layout, ExecSpace, MemoryTraits>& CSRArrayKokkos<T, Layout, Exe
         
         start_index_ = temp.start_index_;
         column_index_ = temp.column_index_;
-        array_ = temp.array_;
+        this_array_ = temp.this_array_;
     }
     return *this;
 }
@@ -10540,14 +10540,14 @@ KOKKOS_INLINE_FUNCTION
 T* CSRArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::begin(size_t i){
     MATAR_CHECK_BOUNDS(i, dim1_ + 1, "i", "CSRArrayKokkos");
     size_t row_start = start_index_.data()[i];
-    return &array_.data()[row_start];
+    return &this_array_.data()[row_start];
 }
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* CSRArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::end(size_t i){
     MATAR_CHECK_BOUNDS(i, dim1_ + 1, "i", "CSRArrayKokkos");
     size_t row_start = start_index_.data()[i+1];
-    return &array_.data()[row_start];
+    return &this_array_.data()[row_start];
 }
 
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -10581,14 +10581,14 @@ template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CSRArrayKokkos<T,Layout,ExecSpace, MemoryTraits>::get_val_flat(size_t k) const{
    MATAR_CHECK_BOUNDS(k, nnz_, "k", "CSRArrayKokkos");
-   return array_.data()[k];
+   return this_array_.data()[k];
 }
 
 // Get the name of the view
 // template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 // KOKKOS_INLINE_FUNCTION
 // const std::string CSRArrayKokkos<T,Layout,ExecSpace, MemoryTraits>::get_name() const{
-//     return array_.label();
+//     return this_array_.label();
 // }
 
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -10653,7 +10653,7 @@ int CSRArray<T>::toCSC(CArray<T> &data, CArray<size_t> &col_ptrs, CArray<size_t>
         }
         int idx = nnz_cols[column_index_[i]] + col_counts[column_index_[i]];
         col_counts[column_index_[i]] += 1;
-        data(idx) = array_[i];
+        data(idx) = this_array_[i];
         row_ptrs(idx) = row - 1;
     }
     // I return an int because I thought I might need to return an error code
@@ -10665,7 +10665,7 @@ int CSRArray<T>::toCSC(CArray<T> &data, CArray<size_t> &col_ptrs, CArray<size_t>
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void CSRArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, nnz_), KOKKOS_CLASS_LAMBDA(const int i){
-        array_[i] = val;
+        this_array_[i] = val;
     });
 }
 
@@ -10682,7 +10682,7 @@ class CSCArrayKokkos
 private: // What ought to be private ?
     size_t dim1_, dim2_;
     size_t nnz_;
-    TArray1D array_;
+    TArray1D this_array_;
     TArray1D miss_;
     SArray1D start_index_;
     SArray1D row_index_;
@@ -10868,7 +10868,7 @@ CSCArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::CSCArrayKokkos(
     dim1_ = dim1;
     dim2_ = dim2;
     start_index_ = start_index.get_kokkos_view();
-    array_ = array.get_kokkos_view();
+    this_array_ = array.get_kokkos_view();
     
     row_index_ = row_index.get_kokkos_view();
     nnz_ = row_index.extent();
@@ -10889,7 +10889,7 @@ T& CSCArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::operator()(size_t i, size
 
     for(k = 0; k < col_end - col_start; k++){
         if(row_index_.data()[col_start + k] == i){
-            return array_.data()[col_start + k];
+            return this_array_.data()[col_start + k];
         }
     }
     miss_[0] = (T) NULL;
@@ -10899,7 +10899,7 @@ T& CSCArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::operator()(size_t i, size
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T* CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::pointer() const {
-    return array_.data();
+    return this_array_.data();
 }
 
 
@@ -10911,7 +10911,7 @@ T& CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::value(size_t i, size_t j) 
     size_t k;
     for(k =0; k < col_end - col_start;k++){
         if(row_index_.data()[col_start + k] == i){
-            return array_.data()[col_start + k];
+            return this_array_.data()[col_start + k];
         }
     }
     miss_[0] = (T) NULL;
@@ -10935,7 +10935,7 @@ CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>& CSCArrayKokkos<T,Layout,ExecS
         
         start_index_ = temp.start_index_;
         row_index_ = temp.row_index_;
-        array_ = temp.array_;
+        this_array_ = temp.this_array_;
     }
     return *this;
 }
@@ -10965,7 +10965,7 @@ KOKKOS_INLINE_FUNCTION
 T* CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::begin(size_t i){
     MATAR_CHECK_BOUNDS(i, dim2_ + 1, "i", "CSCArrayKokkos");
     size_t col_start = start_index_.data()[i];
-    return &array_.data()[col_start];
+    return &this_array_.data()[col_start];
 }
 
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -10973,7 +10973,7 @@ KOKKOS_INLINE_FUNCTION
 T* CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::end(size_t i){
     MATAR_CHECK_BOUNDS(i, dim2_ + 1, "i", "CSCArrayKokkos");
     size_t col_start = start_index_.data()[i+1];
-    return &array_.data()[col_start];
+    return &this_array_.data()[col_start];
 }
 
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -11005,13 +11005,13 @@ size_t CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::nnz(size_t i){
 template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::get_val_flat(size_t k){
-    return array_.data()[k];
+    return this_array_.data()[k];
 }
 
 // template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 // KOKKOS_INLINE_FUNCTION
 // const std::string CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::get_name() const{
-//     return array_.label();
+//     return this_array_.label();
 // }
 
 
@@ -11039,7 +11039,7 @@ int CSCArrayKokkos<T,Layout, ExecSpace, MemoryTraits>::flat_index(size_t i, size
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void CSCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values(T val) {
     Kokkos::parallel_for( Kokkos::RangePolicy<> ( 0, nnz_), KOKKOS_CLASS_LAMBDA(const int i){
-        array_(i) = val;
+        this_array_(i) = val;
     });
 }
 
@@ -11081,7 +11081,7 @@ int CSCArray<T>::toCSR(CArray<T> &data, CArray<size_t> &col_ptrs, CArray<size_t>
         }
         int idx = nnz_rows[row_index_[i]] + row_counts[row_index_[i]];
         row_counts[row_index_[i]] += 1;
-        data(idx) = array_[i];
+        data(idx) = this_array_[i];
         col_ptrs(idx) = col - 1;
     }
     // I return an int because I thought I might need to return an error code
@@ -11105,7 +11105,7 @@ class DDynamicRaggedRightArrayKokkos {
     
     
 private:
-    TArray1D array_;
+    TArray1D this_array_;
     typename TArray1D::t_dev array_dev_;
     typename TArray1D::t_host array_host_;
     Strides1D mystrides_;
@@ -11212,9 +11212,9 @@ DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DDynamicRaggedR
 
     data_setup();
     //allocate view
-    array_ = TArray1D(tag_string, length_);
-    array_host_ = array_.view_host();
-    array_dev_ = array_.view_device();
+    this_array_ = TArray1D(tag_string, length_);
+    array_host_ = this_array_.view_host();
+    array_dev_ = this_array_.view_device();
 }
 
 //setup start indices
@@ -11304,9 +11304,9 @@ DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>&
         mystrides_ = temp.mystrides_;
         mystrides_dev_ = temp.mystrides_dev_;
         mystrides_host_ = temp.mystrides_host_;
-        array_ = temp.array_;
-        array_dev_ = temp.array_dev_;
-        array_host_ = temp.array_host_;
+        this_array_ = temp.this_array_;
+        array_dev_ = temp.this_array_dev_;
+        array_host_ = temp.this_array_host_;
         /*
         #ifdef HAVE_CLASS_LAMBDA
         Kokkos::parallel_for("StrideZeroOut", dim1_, KOKKOS_CLASS_LAMBDA(const int i) {
@@ -11326,7 +11326,7 @@ DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>&
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 Kokkos::DualView<T*, Layout, ExecSpace, MemoryTraits> DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::get_kokkos_dual_view() {
-    return array_;
+    return this_array_;
 }
 
 //set values to input
@@ -11340,15 +11340,15 @@ void DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::update_host() {
 
-    array_.template modify<typename TArray1D::execution_space>();
-    array_.template sync<typename TArray1D::host_mirror_space>();
+    this_array_.template modify<typename TArray1D::execution_space>();
+    this_array_.template sync<typename TArray1D::host_mirror_space>();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 void DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::update_device() {
 
-    array_.template modify<typename TArray1D::host_mirror_space>();
-    array_.template sync<typename TArray1D::execution_space>();
+    this_array_.template modify<typename TArray1D::host_mirror_space>();
+    this_array_.template sync<typename TArray1D::execution_space>();
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
@@ -11370,7 +11370,7 @@ void DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values
     // Kokkos::parallel_for( Kokkos::TeamPolicy<>( dim1_, Kokkos::AUTO, 32 ), KOKKOS_CLASS_LAMBDA ( const Kokkos::TeamPolicy<>::member_type &teamMember ) {
     //     const int i_i = teamMember.league_rank();
     //     Kokkos::parallel_for( Kokkos::TeamThreadRange( teamMember, 0, stride_(i_i) ), [&] ( const int (j_j) ) {
-    //         array_(dim2_*i_i+j_j) = val;    
+    //         this_array_(dim2_*i_i+j_j) = val;    
     //     });
     // });
     Kokkos::parallel_for("SetValues_DynamicRaggedRightArrayKokkos", length_, KOKKOS_CLASS_LAMBDA(const int i) {
@@ -11381,7 +11381,7 @@ void DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::set_values
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 const std::string DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::get_name() const{
-    return array_.view_host().label();
+    return this_array_.view_host().label();
 }
 
 // Destructor
