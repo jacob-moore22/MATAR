@@ -7353,7 +7353,7 @@ T& DRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::operator()(
     
     // asserts
     MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim1
-    MATAR_CHECK_BOUNDS(j, stride(i), "j", "RaggedRightArrayKokkos", this_array_.label().c_str());  // die if >= stride
+    MATAR_CHECK_BOUNDS(j, stride(i), "j", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= stride
     
     return this_array_dev_(j + start);
 } // End operator()
@@ -7370,7 +7370,7 @@ T& DRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::operator()(
     
     // asserts
     MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim0
-    MATAR_CHECK_BOUNDS(j, stride(i), "j", "RaggedRightArrayKokkos", this_array_.label().c_str());  // die if >= dim1
+    MATAR_CHECK_BOUNDS(j, stride(i), "j", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim1
     MATAR_CHECK_BOUNDS(k, dims_[1], "k", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim2
     
     size_t index_1D = start + k + dims_[1]*j;
@@ -7390,7 +7390,7 @@ T& DRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits,ILayout>::operator()(
     
     // asserts
     MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim1
-    MATAR_CHECK_BOUNDS(j, stride(i), "j", "RaggedRightArrayKokkos", this_array_.label().c_str());  // die if >= stride
+    MATAR_CHECK_BOUNDS(j, stride(i), "j", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= stride
     MATAR_CHECK_BOUNDS(k, dims_[1], "k", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dims_[1]
     MATAR_CHECK_BOUNDS(l, dims_[2], "l", "DRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dims_[2]
     
