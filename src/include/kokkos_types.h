@@ -11239,7 +11239,7 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
     // Asserts
-    MATAR_CHECK_BOUNDS(i, dim1_, "i", "DynamicRaggedRightArrayKokkos", this_array_.label().c_str());  // die if >= dim1
+    MATAR_CHECK_BOUNDS(i, dim1_, "i", "DDynamicRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim1
     MATAR_CHECK_BOUNDS(j, mystrides_dev_(i), "j", "DDynamicRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim2
     // Cannot assert on Kokkos View
     //assert(j < stride_[i] && "j is out of stride bounds in DynamicRaggedRight");  // die if >= stride
@@ -11252,7 +11252,7 @@ T& DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(s
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 T& DDynamicRaggedRightArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::host(size_t i, size_t j) const {
     // Asserts
-    MATAR_CHECK_BOUNDS(i, dim1_, "i", "DynamicRaggedRightArrayKokkos", this_array_.label().c_str());  // die if >= dim1
+    MATAR_CHECK_BOUNDS(i, dim1_, "i", "DDynamicRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim1
     MATAR_CHECK_BOUNDS(j, mystrides_host_(i), "j", "DDynamicRaggedRightArrayKokkos", this_array_.h_view.label().c_str());  // die if >= dim2
     // Cannot assert on Kokkos View
     //assert(j < stride_[i] && "j is out of stride bounds in DynamicRaggedRight");  // die if >= stride
