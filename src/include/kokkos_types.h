@@ -446,8 +446,8 @@ FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::FArrayKokkos(size_t dim0, size_t 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()( size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "FArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 1D");
     return this_array_(i);
 }
 
@@ -455,9 +455,9 @@ T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()( size_t i) const {
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "FArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos 2D");
     return this_array_(i + (j * dims_[0]));
 }
 
@@ -465,10 +465,10 @@ T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j)
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "FArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos 3D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1]));
 }
@@ -477,11 +477,11 @@ T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j,
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "FArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos 4D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2]));
@@ -492,12 +492,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "FArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "FArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "FArrayKokkos 5D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -509,13 +509,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "FArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "FArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "FArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "FArrayKokkos 6D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -528,14 +528,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& FArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "FArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "FArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "FArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "FArrayKokkos 7D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -830,8 +830,8 @@ ViewFArrayKokkos<T>::ViewFArrayKokkos(T *some_array, size_t dim0, size_t dim1,
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewFArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 1D");
     return this_array_[i];
 }
 
@@ -839,9 +839,9 @@ T& ViewFArrayKokkos<T>::operator()(size_t i) const {
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewFArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos 2D");
     return this_array_[i + (j * dims_[0])];
 }
 
@@ -849,10 +849,10 @@ T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j) const {
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos 3D");
     return this_array_[i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])];
 }
@@ -862,11 +862,11 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j, size_t k,
                                    size_t l) const {
-    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos 4D");
     return this_array_[i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] *dims_[2])];
@@ -877,12 +877,12 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j, size_t k,
                                    size_t l, size_t m) const {
-    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewFArrayKokkos 5D");
     return this_array_[i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -894,13 +894,13 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j, size_t k,
                                    size_t l, size_t m, size_t n) const {
-    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewFArrayKokkos 6D");
     return this_array_[i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -914,14 +914,14 @@ KOKKOS_INLINE_FUNCTION
 T& ViewFArrayKokkos<T>::operator()(size_t i, size_t j, size_t k,
                                    size_t l, size_t m, size_t n,
                                    size_t o) const {
-    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(o, dims_[6], "o", "ViewFArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(o, dims_[6], "o", "ViewFArrayKokkos 7D");
     return this_array_[i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -1190,27 +1190,27 @@ FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::FMatrixKokkos(size_t dim1, size_
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "FMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 1D");
     return this_matrix_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "FMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 2D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "FMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 3D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1]));
 }
@@ -1218,11 +1218,11 @@ T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "FMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 4D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2]));
@@ -1232,12 +1232,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                 size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "FMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos 5D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -1248,13 +1248,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                 size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "FMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "FMatrixKokkos 6D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -1266,14 +1266,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& FMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                 size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "FMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "FMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "FMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "FMatrixKokkos 7D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -1574,17 +1574,17 @@ ViewFMatrixKokkos<T>::ViewFMatrixKokkos(T* some_matrix, size_t dim1,
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewFMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 1D");
     return this_matrix_[(i - 1)];
 }
 
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewFMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 2D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])];
 }
 
@@ -1592,10 +1592,10 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k) const
 {
-    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 3D");
     
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])];
@@ -1605,11 +1605,11 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k,
                                     size_t l) const {
-    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 4D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])];
@@ -1619,12 +1619,12 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                     size_t m) const {
-    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos 5D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -1636,13 +1636,13 @@ KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                     size_t m, size_t n) const
 {
-    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewFMatrixKokkos 6D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -1655,14 +1655,14 @@ KOKKOS_INLINE_FUNCTION
 T& ViewFMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                     size_t m, size_t n, size_t o) const
 {
-    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(o, dims_[6], "o", "ViewFMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(o, dims_[6], "o", "ViewFMatrixKokkos 7D");
     return this_matrix_[(i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -1959,27 +1959,27 @@ DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DFArrayKokkos(size_t dim0, size_
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DFArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 1D");
     return this_array_.view_device()(i);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DFArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos 2D");
     return this_array_.view_device()(i + (j * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos 3D");
     return this_array_.view_device()(i + (j * dims_[0])
                                 + (k * dims_[0] * dims_[1]));
 }
@@ -1987,11 +1987,11 @@ T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos 4D");
     return this_array_.view_device()(i + (j * dims_[0])
                                 + (k * dims_[0] * dims_[1])
                                 + (l * dims_[0] * dims_[1] * dims_[2]));
@@ -2001,12 +2001,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DFArrayKokkos 5D");
     return this_array_.view_device()(i + (j * dims_[0])
                                 + (k * dims_[0] * dims_[1])
                                 + (l * dims_[0] * dims_[1] * dims_[2])
@@ -2017,13 +2017,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DFArrayKokkos 6D");
     return this_array_.view_device()(i + (j * dims_[0])
                                 + (k * dims_[0] * dims_[1])
                                 + (l * dims_[0] * dims_[1] * dims_[2])
@@ -2035,14 +2035,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DFArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DFArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DFArrayKokkos 7D");
     return this_array_.view_device()(i + (j * dims_[0])
                                 + (k * dims_[0] * dims_[1])
                                 + (l * dims_[0] * dims_[1] * dims_[2])
@@ -2445,27 +2445,27 @@ DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFArrayKokkos(T * inp_ar
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DViewFArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 1D");
     return this_array_(i);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DViewFArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos 2D");
     return this_array_(i + (j * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DViewFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos 3D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1]));
 }
@@ -2473,11 +2473,11 @@ T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos 4D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2]));
@@ -2487,12 +2487,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewFArrayKokkos 5D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -2503,13 +2503,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewFArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewFArrayKokkos 6D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -2521,14 +2521,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewFArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewFArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DViewFArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewFArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DViewFArrayKokkos 7D");
     return this_array_(i + (j * dims_[0])
                          + (k * dims_[0] * dims_[1])
                          + (l * dims_[0] * dims_[1] * dims_[2])
@@ -2867,27 +2867,27 @@ DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DFMatrixKokkos(size_t dim1, siz
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DFMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 1D");
     return this_matrix_.view_device()((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DFMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 2D");
     return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 3D");
     return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1]));
 }
@@ -2895,11 +2895,11 @@ T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 4D");
     return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2]));
@@ -2909,12 +2909,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos 5D");
     return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -2925,13 +2925,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DFMatrixKokkos 6D");
     return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -2943,14 +2943,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DFMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DFMatrixKokkos 7D");
     return this_matrix_.view_device()((i - 1) + ((j - 1) * dims_[0])
                                        + ((k - 1) * dims_[0] * dims_[1])
                                        + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -3338,27 +3338,27 @@ DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewFMatrixKokkos(T * inp_
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DViewFMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 1D");
     return this_matrix_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DViewFMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 2D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DViewFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 3D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1]));
 }
@@ -3366,11 +3366,11 @@ T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 4D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2]));
@@ -3380,12 +3380,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos 5D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -3396,13 +3396,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewFMatrixKokkos 6D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -3414,14 +3414,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewFMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewFMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DViewFMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewFMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DViewFMatrixKokkos 7D");
     return this_matrix_((i - 1) + ((j - 1) * dims_[0])
                                 + ((k - 1) * dims_[0] * dims_[1])
                                 + ((l - 1) * dims_[0] * dims_[1] * dims_[2])
@@ -3737,27 +3737,27 @@ CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::CArrayKokkos(size_t dim0, size_t 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "CArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 1D");
     return this_array_(i);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "CArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos 2D");
     return this_array_(j + (i * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "CArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos 3D");
     return this_array_(k + (j * dims_[2])
                          + (i * dims_[2] * dims_[1]));
 }
@@ -3765,11 +3765,11 @@ T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j,
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "CArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos 4D");
     return this_array_(l + (k * dims_[3])
                          + (j * dims_[3] * dims_[2])
                          + (i * dims_[3] * dims_[2] * dims_[1]));
@@ -3779,12 +3779,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "CArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "CArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "CArrayKokkos 5D");
     return this_array_(m + (l * dims_[4])
                          + (k * dims_[4] * dims_[3])
                          + (j * dims_[4] * dims_[3] * dims_[2])
@@ -3795,13 +3795,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "CArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "CArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "CArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "CArrayKokkos 6D");
     return this_array_(n + (m * dims_[5])
                          + (l * dims_[5] * dims_[4])
                          + (k * dims_[5] * dims_[4] * dims_[3])
@@ -3813,14 +3813,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& CArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "CArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "CArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "CArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "CArrayKokkos 7D");
     return this_array_(o + (n * dims_[6])
                          + (m * dims_[6] * dims_[5])
                          + (l * dims_[6] * dims_[5] * dims_[4])
@@ -4118,27 +4118,27 @@ ViewCArrayKokkos<T>::ViewCArrayKokkos(T* some_array, size_t dim0,
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewCArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 1D");
     return this_array_[i];
 }
 
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos 2D");
     return this_array_[j + (i * dims_[1])];
 }
 
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos 3D");
     return this_array_[k + (j * dims_[2])
                          + (i * dims_[2] * dims_[1])];
 }
@@ -4147,11 +4147,11 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i, size_t j, size_t k,
                                    size_t l) const {
-    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos 4D");
     return this_array_[l + (k * dims_[3])
                          + (j * dims_[3] * dims_[2])
                          + (i * dims_[3] * dims_[2] * dims_[1])];
@@ -4161,12 +4161,12 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                    size_t m) const {
-    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewCArrayKokkos 5D");
     return this_array_[m + (l * dims_[4])
                          + (k * dims_[4] * dims_[3])
                          + (j * dims_[4] * dims_[3] * dims_[2])
@@ -4177,13 +4177,13 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                    size_t m, size_t n) const {
-    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewCArrayKokkos 6D");
     return this_array_[n + (m * dims_[5])
                          + (l * dims_[5] * dims_[4])
                          + (k * dims_[5] * dims_[4] * dims_[3])
@@ -4195,14 +4195,14 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCArrayKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                    size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS_NO_LABEL(o, dims_[6], "o", "ViewCArrayKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(i, dims_[0], "i", "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(j, dims_[1], "j", "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(k, dims_[2], "k", "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(l, dims_[3], "l", "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(m, dims_[4], "m", "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(n, dims_[5], "n", "ViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(o, dims_[6], "o", "ViewCArrayKokkos 7D");
     return this_array_[o + (n * dims_[6])
                          + (m * dims_[6] * dims_[5])
                          + (l * dims_[6] * dims_[5] * dims_[4])
@@ -4471,27 +4471,27 @@ CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::CMatrixKokkos(size_t dim1, size_
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "CMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 1D");
     return this_matrix_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "CMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 2D");
     return this_matrix_((j - 1) + ((i - 1) * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "CMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 3D");
     return this_matrix_((k - 1) + ((j - 1) * dims_[2])
                                 + ((i - 1) * dims_[2] * dims_[1]));
 }
@@ -4499,11 +4499,11 @@ T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "CMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 4D");
     return this_matrix_((l - 1) + ((k - 1) * dims_[3])
                                 + ((j - 1) * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[3] * dims_[2] * dims_[1]));
@@ -4513,12 +4513,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                 size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "CMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos 5D");
     return this_matrix_((m - 1) + ((l - 1) * dims_[4])
                                 + ((k - 1) * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
@@ -4529,13 +4529,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                 size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "CMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "CMatrixKokkos 6D");
     return this_matrix_((n - 1) + ((m - 1) * dims_[5])
                                 + ((l - 1) * dims_[5] * dims_[4])
                                 + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
@@ -4547,14 +4547,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& CMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                 size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "CMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "CMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "CMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "CMatrixKokkos 7D");
     return this_matrix_((o-1) + ((n - 1) * dims_[6])
                               + ((m - 1) * dims_[6] * dims_[5])
                               + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
@@ -4845,27 +4845,27 @@ ViewCMatrixKokkos<T>::ViewCMatrixKokkos(T* some_matrix, size_t dim1, size_t dim2
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(1, order_, "ViewCMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 1D");
     return this_matrix_[(i - 1)];
 }
 
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(2, order_, "ViewCMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 2D");
     return this_matrix_[(j - 1) + ((i - 1) * dims_[1])];
 }
 
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(3, order_, "ViewCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 3D");
     return this_matrix_[(k - 1) + ((j - 1) * dims_[2])
                                 + ((i - 1) * dims_[2] * dims_[1])];
 }
@@ -4873,11 +4873,11 @@ T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k) const {
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j , size_t k, size_t l) const {
-    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(4, order_, "ViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 4D");
     return this_matrix_[(l - 1) + ((k - 1) * dims_[3])
                                 + ((j - 1) * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[3] * dims_[2] * dims_[1])];
@@ -4887,12 +4887,12 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                     size_t m) const {
-    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(5, order_, "ViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos 5D");
     return this_matrix_[(m - 1) + ((l - 1) * dims_[4])
                                 + ((k - 1) * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
@@ -4903,13 +4903,13 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                     size_t m, size_t n) const {
-    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(6, order_, "ViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewCMatrixKokkos 6D");
     return this_matrix_[(n - 1) + ((m - 1) * dims_[5])
                                 + ((l - 1) * dims_[5] * dims_[4])
                                 + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
@@ -4921,14 +4921,14 @@ template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& ViewCMatrixKokkos<T>::operator()(size_t i, size_t j, size_t k, size_t l,
                                     size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(o, dims_[6], "o", "ViewCMatrixKokkos");
+    MATAR_CHECK_ORDER_NO_LABEL(7, order_, "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(i, dims_[0], "i", "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(j, dims_[1], "j", "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(k, dims_[2], "k", "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(l, dims_[3], "l", "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(m, dims_[4], "m", "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(n, dims_[5], "n", "ViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX_NO_LABEL(o, dims_[6], "o", "ViewCMatrixKokkos 7D");
     return this_matrix_[o + ((n - 1) * dims_[6])
                           + ((m - 1) * dims_[6] * dims_[5])
                           + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
@@ -5227,27 +5227,27 @@ DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DCArrayKokkos(size_t dim0, size_
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DCArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 1D");
     return this_array_.view_device()(i);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos 2D");
     return this_array_.view_device()(j + (i * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos 3D");
     return this_array_.view_device()(k + (j * dims_[2])
                                 + (i * dims_[2] * dims_[1]));
 }
@@ -5255,11 +5255,11 @@ T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos 4D");
     return this_array_.view_device()(l + (k * dims_[3])
                                 + (j * dims_[3] * dims_[2])
                                 + (i * dims_[3] * dims_[2] * dims_[1]));
@@ -5269,12 +5269,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DCArrayKokkos 5D");
     return this_array_.view_device()(m + (l * dims_[4])
                                 + (k * dims_[4] * dims_[3])
                                 + (j * dims_[4] * dims_[3] * dims_[2])
@@ -5285,13 +5285,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DCArrayKokkos 6D");
     return this_array_.view_device()(n + (m * dims_[5])
                                 + (l * dims_[5] * dims_[4])
                                 + (k * dims_[5] * dims_[4] * dims_[3])
@@ -5303,14 +5303,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DCArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DCArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DCArrayKokkos 7D");
     return this_array_.view_device()(o + (n * dims_[6])
                                 + (m * dims_[6] * dims_[5])
                                 + (l * dims_[6] * dims_[5] * dims_[4])
@@ -5721,27 +5721,27 @@ DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCArrayKokkos(T * inp_ar
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DViewCArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 1D");
     return this_array_(i);
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DViewCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos 2D");
     return this_array_(j + (i * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DViewCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos 3D");
     return this_array_(k + (j * dims_[2])
                          + (i * dims_[2] * dims_[1]));
 }
@@ -5749,11 +5749,11 @@ T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos 4D");
     return this_array_(l + (k * dims_[3])
                          + (j * dims_[3] * dims_[2])
                          + (i * dims_[3] * dims_[2] * dims_[1]));
@@ -5763,12 +5763,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewCArrayKokkos 5D");
     return this_array_(m + (l * dims_[4])
                          + (k * dims_[4] * dims_[3])
                          + (j * dims_[4] * dims_[3] * dims_[2])
@@ -5779,13 +5779,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewCArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewCArrayKokkos 6D");
     return this_array_(n + (m * dims_[5])
                          + (l * dims_[5] * dims_[4])
                          + (k * dims_[5] * dims_[4] * dims_[3])
@@ -5797,14 +5797,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewCArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewCArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DViewCArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DViewCArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DViewCArrayKokkos 7D");
     return this_array_(o + (n * dims_[6])
                          + (m * dims_[6] * dims_[5])
                          + (l * dims_[6] * dims_[5] * dims_[4])
@@ -6142,27 +6142,27 @@ DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DCMatrixKokkos(size_t dim1, siz
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DCMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 1D");
     return this_matrix_.view_device()((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DCMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 2D");
     return this_matrix_.view_device()((j - 1) + ((i - 1) * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 3D");
     return this_matrix_.view_device()((k - 1) + ((j - 1) * dims_[2])
                                        + ((i - 1) * dims_[2] * dims_[1]));
 }
@@ -6170,11 +6170,11 @@ T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 4D");
     return this_matrix_.view_device()((l - 1) + ((k - 1) * dims_[3])
                                        + ((j - 1) * dims_[3] * dims_[2])
                                        + ((i - 1) * dims_[3] * dims_[2] * dims_[1]));
@@ -6184,12 +6184,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos 5D");
     return this_matrix_.view_device()((m - 1) + ((l - 1) * dims_[4])
                                        + ((k - 1) * dims_[4] * dims_[3])
                                        + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
@@ -6200,13 +6200,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DCMatrixKokkos 6D");
     return this_matrix_.view_device()((n - 1) + ((m - 1) * dims_[5])
                                        + ((l - 1) * dims_[5] * dims_[4])
                                        + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
@@ -6218,14 +6218,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DCMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DCMatrixKokkos 7D");
     return this_matrix_.view_device()((o-1) + ((n - 1) * dims_[6])
                                      + ((m - 1) * dims_[6] * dims_[5])
                                      + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
@@ -6611,27 +6611,27 @@ DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DViewCMatrixKokkos(T * inp_
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DViewCMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 1D");
     return this_matrix_((i - 1));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DViewCMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 2D");
     return this_matrix_((j - 1) + ((i - 1) * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DViewCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 3D");
     return this_matrix_((k - 1) + ((j - 1) * dims_[2])
                                 + ((i - 1) * dims_[2] * dims_[1]));
 }
@@ -6639,11 +6639,11 @@ T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 4D");
     return this_matrix_((l - 1) + ((k - 1) * dims_[3])
                                 + ((j - 1) * dims_[3] * dims_[2])
                                 + ((i - 1) * dims_[3] * dims_[2] * dims_[1]));
@@ -6653,12 +6653,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos 5D");
     return this_matrix_((m - 1) + ((l - 1) * dims_[4])
                                 + ((k - 1) * dims_[4] * dims_[3])
                                 + ((j - 1) * dims_[4] * dims_[3] * dims_[2])
@@ -6669,13 +6669,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewCMatrixKokkos 6D");
     return this_matrix_((n - 1) + ((m - 1) * dims_[5])
                                 + ((l - 1) * dims_[5] * dims_[4])
                                 + ((k - 1) * dims_[5] * dims_[4] * dims_[3])
@@ -6687,14 +6687,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DViewCMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewCMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DViewCMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(j, dims_[1], "j", "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(k, dims_[2], "k", "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(l, dims_[3], "l", "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(m, dims_[4], "m", "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(n, dims_[5], "n", "DViewCMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS_MATRIX(o, dims_[6], "o", "DViewCMatrixKokkos 7D");
     return this_matrix_(o + ((n - 1) * dims_[6])
                           + ((m - 1) * dims_[6] * dims_[5])
                           + ((l - 1) * dims_[6] * dims_[5] * dims_[4])
@@ -7877,9 +7877,9 @@ DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::DynamicArrayKokkos(size_t d
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_actual_size_[0], "i", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DynamicArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 1D");
+    MATAR_CHECK_BOUNDS(i, dims_actual_size_[0], "i", "DynamicArrayKokkos 1D");
     return this_array_(i);
 }
 
@@ -7887,19 +7887,19 @@ T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) con
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DynamicArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos 2D");
     return this_array_(j + (i * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DynamicArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos 3D");
     return this_array_(k + (j * dims_[2])
                          + (i * dims_[2] * dims_[1]));
 }
@@ -7907,11 +7907,11 @@ T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, siz
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DynamicArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos 4D");
     return this_array_(l + (k * dims_[3])
                          + (j * dims_[3] * dims_[2])
                          + (i * dims_[3] * dims_[2] * dims_[1]));
@@ -7921,12 +7921,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DynamicArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicArrayKokkos 5D");
     return this_array_(m + (l * dims_[4])
                          + (k * dims_[4] * dims_[3])
                          + (j * dims_[4] * dims_[3] * dims_[2])
@@ -7937,13 +7937,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DynamicArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicArrayKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicArrayKokkos 6D");
     return this_array_(n + (m * dims_[5])
                          + (l * dims_[5] * dims_[4])
                          + (k * dims_[5] * dims_[4] * dims_[3])
@@ -7955,14 +7955,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DynamicArrayKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicArrayKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DynamicArrayKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicArrayKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DynamicArrayKokkos 7D");
     return this_array_(o + (n * dims_[6])
                          + (m * dims_[6] * dims_[5])
                          + (l * dims_[6] * dims_[5] * dims_[4])
@@ -8334,10 +8334,10 @@ DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::DynamicMatrixKokkos(size_t
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) const {
-    MATAR_CHECK_ORDER(1, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(1, order_, "DynamicMatrixKokkos 1D");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_[0], "i", "DynamicMatrixKokkos 1D");
     assert(i > 0 && "i cannot be 0 in DynamicMatrixKokkos 1D!");
-    MATAR_CHECK_BOUNDS_MATRIX(i, dims_actual_size_[0], "i", "DynamicMatrixKokkos");
+    MATAR_CHECK_BOUNDS_MATRIX(i, dims_actual_size_[0], "i", "DynamicMatrixKokkos 1D");
     return this_array_((i-1));
 }
 
@@ -8345,19 +8345,19 @@ T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i) co
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j) const {
-    MATAR_CHECK_ORDER(2, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(2, order_, "DynamicMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos 2D");
     return this_array_(j + (i * dims_[1]));
 }
 
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k) const {
-    MATAR_CHECK_ORDER(3, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(3, order_, "DynamicMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos 3D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos 3D");
     return this_array_(k + (j * dims_[2])
                          + (i * dims_[2] * dims_[1]));
 }
@@ -8365,11 +8365,11 @@ T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, si
 template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l) const {
-    MATAR_CHECK_ORDER(4, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(4, order_, "DynamicMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos 4D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos 4D");
     return this_array_(l + (k * dims_[3])
                          + (j * dims_[3] * dims_[2])
                          + (i * dims_[3] * dims_[2] * dims_[1]));
@@ -8379,12 +8379,12 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m) const {
-    MATAR_CHECK_ORDER(5, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(5, order_, "DynamicMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos 5D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicMatrixKokkos 5D");
     return this_array_(m + (l * dims_[4])
                          + (k * dims_[4] * dims_[3])
                          + (j * dims_[4] * dims_[3] * dims_[2])
@@ -8395,13 +8395,13 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n) const {
-    MATAR_CHECK_ORDER(6, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(6, order_, "DynamicMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicMatrixKokkos 6D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicMatrixKokkos 6D");
     return this_array_(n + (m * dims_[5])
                          + (l * dims_[5] * dims_[4])
                          + (k * dims_[5] * dims_[4] * dims_[3])
@@ -8413,14 +8413,14 @@ template <typename T, typename Layout, typename ExecSpace, typename MemoryTraits
 KOKKOS_INLINE_FUNCTION
 T& DynamicMatrixKokkos<T,Layout,ExecSpace,MemoryTraits>::operator()(size_t i, size_t j, size_t k, size_t l,
                                size_t m, size_t n, size_t o) const {
-    MATAR_CHECK_ORDER(7, order_, "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicMatrixKokkos");
-    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DynamicMatrixKokkos");
+    MATAR_CHECK_ORDER(7, order_, "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(i, dims_[0], "i", "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(j, dims_[1], "j", "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(k, dims_[2], "k", "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(l, dims_[3], "l", "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(m, dims_[4], "m", "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(n, dims_[5], "n", "DynamicMatrixKokkos 7D");
+    MATAR_CHECK_BOUNDS(o, dims_[6], "o", "DynamicMatrixKokkos 7D");
     return this_array_(o + (n * dims_[6])
                          + (m * dims_[6] * dims_[5])
                          + (l * dims_[6] * dims_[5] * dims_[4])
@@ -10880,8 +10880,8 @@ template<typename T, typename Layout, typename ExecSpace, typename MemoryTraits>
 KOKKOS_INLINE_FUNCTION
 T& CSCArrayKokkos<T, Layout, ExecSpace, MemoryTraits>::operator()(size_t i, size_t j) const {
     // Check if the indices are within bounds
-    MATAR_CHECK_BOUNDS(i, dim1_, "i", "CSCArrayKokkos");
-    MATAR_CHECK_BOUNDS(j, dim2_, "j", "CSCArrayKokkos");
+    MATAR_CHECK_BOUNDS(i, dim1_, "i", "CSCArrayKokkos 2D");
+    MATAR_CHECK_BOUNDS(j, dim2_, "j", "CSCArrayKokkos 2D");
 
     size_t col_start = start_index_.data()[j];
     size_t col_end = start_index_.data()[j + 1];
@@ -11463,8 +11463,8 @@ InheritedArray2L<T>::InheritedArray2L(size_t some_dim1) {
 template <typename T>
 KOKKOS_INLINE_FUNCTION
 T& InheritedArray2L<T>::operator()(size_t i, size_t dest) const {
-    MATAR_CHECK_BOUNDS(i, dim1_, "i", "InheritedArray2L");
-    MATAR_CHECK_BOUNDS_NO_LABEL(dest, 2, "dest", "InheritedArray2L");
+    MATAR_CHECK_BOUNDS(i, dim1_, "i", "InheritedArray2L 2D");
+    MATAR_CHECK_BOUNDS_NO_LABEL(dest, 2, "dest", "InheritedArray2L 2D");
     if (dest == 0)
         return h_this_array_(i);
     else
